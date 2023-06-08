@@ -1,7 +1,7 @@
 """This script produces the plots required for the one-pagers"""
 
 # 5 plots required in total for each reporting facility included in the 2022 mid term report
-# 3 pie charts showing users in each year 2019-2021
+# 3 pie charts showing users in each year 2020-2022
 # 2 stacked bar plots (one for JIF score, one for type of publication: service, collab...)
 
 # In input_data.py data is formatted accordingly
@@ -185,8 +185,8 @@ def Aff_pies_func_stacked_text(input):
 # Function can easily be modified in future years
 for i in affiliate_data["Year"].unique():
     temp = affiliate_data[(affiliate_data["Year"] == i)]
-    #    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "AIDA Data Hub")])
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Advanced FISH Technologies")])
+    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "AIDA Data Hub")])
+    #     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Advanced FISH Technologies")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Affinity Proteomics Stockholm")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Affinity Proteomics Uppsala")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Ancient DNA")])
@@ -195,15 +195,16 @@ for i in affiliate_data["Year"].unique():
     )
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Cellular Immunomonitoring")])
     Aff_pies_func_stacked_text(
-        temp[(temp["Unit"] == "Chemical Biology Consortium Sweden")]
+        temp[(temp["Unit"] == "Chalmers Mass Spectrometry Infrastructure")]
     )
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Chemical Proteomics")])
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Gothenburg")])
+
+    #     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Chemical Proteomics")])
+    #     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Gothenburg")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Linköping")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Lund")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Örebro")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Stockholm")])
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Umeå")])
+    #     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Umeå")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Clinical Genomics Uppsala")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "CRISPR Functional Genomics")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Drug Discovery and Development")])
@@ -211,26 +212,29 @@ for i in affiliate_data["Year"].unique():
         temp[(temp["Unit"] == "Eukaryotic Single Cell Genomics")]
     )
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Exposomics")])
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Genome Engineering Zebrafish")])
+    #     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Genome Engineering Zebrafish")])
     Aff_pies_func_stacked_text(
         temp[(temp["Unit"] == "Global Proteomics and Proteogenomics")]
     )
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Glycoproteomics")])
+    #     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Glycoproteomics")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "In Situ Sequencing")])
     Aff_pies_func_stacked_text(
         temp[(temp["Unit"] == "Integrated Microscopy Technologies Gothenburg")]
     )
-    Aff_pies_func_stacked_text(
-        temp[(temp["Unit"] == "Integrated Microscopy Technologies Stockholm")]
-    )
-    Aff_pies_func_stacked_text(
-        temp[(temp["Unit"] == "Integrated Microscopy Technologies Umeå")]
-    )
+    #     Aff_pies_func_stacked_text(
+    #         temp[(temp["Unit"] == "Integrated Microscopy Technologies Stockholm")]
+    #     )
+    #     Aff_pies_func_stacked_text(
+    #         temp[(temp["Unit"] == "Integrated Microscopy Technologies Umeå")]
+    #     )
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Microbial Single Cell Genomics")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Spatial Mass Spectrometry")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Spatial Proteomics")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Structural Proteomics")])
-    Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Spatial Mass Spectrometry")])
+    # Aff_pies_func_stacked_text(
+    #     temp[(temp["Unit"] == "Support, Infrastructure and Training")]
+    # )
+    # Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Swedish NMR Centre")])
     Aff_pies_func_stacked_text(temp[(temp["Unit"] == "Swedish Metabolomics Centre")])
 
 # Note - some combinations of year and unit might be missing if they are new units etc.
@@ -245,6 +249,9 @@ def pub_cat_func(input):
     Service = pubcats[(pubcats["Qualifiers"] == "Service")]
     Tech_dev = pubcats[(pubcats["Qualifiers"] == "Technology development")]
     No_cat = pubcats[(pubcats["Qualifiers"] == "No category")]
+    pubcats.drop(
+        pubcats[pubcats["Qualifiers"] == "Technology development"].index, inplace=True
+    )
     # Make stacked bar chart
     fig = go.Figure(
         data=[
@@ -269,17 +276,18 @@ def pub_cat_func(input):
                 x=Service.Year,
                 y=Service.Count,
                 marker=dict(
-                    color=SCILIFE_COLOURS[4], line=dict(color="#000000", width=1)
+                    color=SCILIFE_COLOURS[0],
+                    line=dict(color="#000000", width=1),  # was4
                 ),
             ),
-            go.Bar(
-                name="Technology<br>development",
-                x=Tech_dev.Year,
-                y=Tech_dev.Count,
-                marker=dict(
-                    color=SCILIFE_COLOURS[0], line=dict(color="#000000", width=1)
-                ),
-            ),
+            # go.Bar(
+            #     name="Technology<br>development",
+            #     x=Tech_dev.Year,
+            #     y=Tech_dev.Count,
+            #     marker=dict(
+            #         color=SCILIFE_COLOURS[0], line=dict(color="#000000", width=1)
+            #     ),
+            # ),
         ]
     )
 
@@ -292,6 +300,20 @@ def pub_cat_func(input):
         width=600,
         height=600,
         showlegend=True,
+        annotations=[
+            dict(
+                showarrow=False,
+                text="Total Tech.<br>Dev. papers<br>(2020-2022): <b>{}</b>".format(
+                    sum(Tech_dev.Count)
+                ),
+                font=dict(size=25),
+                align="left",
+                xref="paper",
+                yref="paper",
+                x=1.75,
+                y=0.4,
+            )
+        ],
     )
     # List years to use in x-axis
     Years = pubcats["Year"].unique().astype(str)

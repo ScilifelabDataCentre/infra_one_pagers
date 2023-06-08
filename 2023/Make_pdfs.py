@@ -238,16 +238,16 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
         bottomPadding=0 * mm,
     )
     pd.options.display.max_colwidth = 600
-    if Unit_name == "Microbial Single Cell Genomics":
-        header_content = Paragraph(
-            "<b>{}</b><br/><font name=Lato size=12> {} Platform </font> <font name=Lato size=9> (</font><font name=Lato-B size=9>Web link for Unit:</font><font name=Lato size=9 color='#4C979F'> <u><a href={}>Publications</a></u></font><font name=Lato size=9>)</font>".format(
-                (Unit_data["Unit"]).to_string(index=False),
-                (Unit_data["Platform"]).to_string(index=False),
-                (Unit_data["PDB"]).to_string(index=False),
-            ),
-            styles["onepager_title"],
-        )
-    elif Unit_name == "Drug Discovery and Development":
+    # if Unit_name == "Microbial Single Cell Genomics":
+    #     header_content = Paragraph(
+    #         "<b>{}</b><br/><font name=Lato size=12> {} Platform </font> <font name=Lato size=9> (</font><font name=Lato-B size=9>Web link for Unit:</font><font name=Lato size=9 color='#4C979F'> <u><a href={}>Publications</a></u></font><font name=Lato size=9>)</font>".format(
+    #             (Unit_data["Unit"]).to_string(index=False),
+    #             (Unit_data["Platform"]).to_string(index=False),
+    #             (Unit_data["PDB"]).to_string(index=False),
+    #         ),
+    #         styles["onepager_title"],
+    #     )
+    if Unit_name == "Drug Discovery and Development":
         header_content = Paragraph(
             "<b>{}</b><br/><font name=Lato size=12> {} Platform </font> <font name=Lato size=9> (</font><font name=Lato-B size=9>Web links for Platform:</font> <font name=Lato size=9 color='#4C979F'><u><a href={}>Webpage</a></u></font><font name=Lato size=9 color='black'>,</font> <font name=Lato size=9 color='#4C979F'> <u><a href={}>Publications</a></u></font><font name=Lato size=9>)</font>".format(
                 (Unit_data["Unit"]).to_string(index=False),
@@ -303,8 +303,8 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
                 styles["onepager_text"],
             )
         )
-    # Compute and storage and CRISPR Functional Genomics dont have Platform directors
-    elif Unit_name == "Compute and Storage":
+    # Support for Computational Resources and CRISPR Functional Genomics dont have Platform directors
+    elif Unit_name == "Support for Computational Resources":
         Story.append(
             Paragraph(
                 "<font name=Lato-B><b>Head(s) of Unit: </b></font> {}".format(
@@ -772,13 +772,13 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
         )
     # special notes
     # This puts an asterisk at the bottom of the services, with some info if there was any in the data file
-    if Unit_name == "Affinity Proteomics Uppsala":
-        Story.append(
-            Paragraph(
-                "Note: Pre-2021 publication data is from 'Clinical Biomarkers' and 'PLA and Single Cell Proteomics'.",
-                styles["onepager_footnote"],
-            )
-        )
+    # if Unit_name == "Affinity Proteomics Uppsala": #excluded as now all labelled as affinity proteomics from 2021
+    #     Story.append(
+    #         Paragraph(
+    #             "Note: Pre-2021 publication data is from 'Clinical Biomarkers' and 'PLA and Single Cell Proteomics'.",
+    #             styles["onepager_footnote"],
+    #         )
+    #     )
     # elif Unit_name == "Mass Cytometry (LiU)": # excluded this as Mass Cytometry not included in 2022 (for 2021 reporting)
     #     Story.append(
     #         Paragraph(
@@ -786,8 +786,8 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
     #             styles["onepager_footnote"],
     #         )
     #     )
-    else:
-        print("no special notes for this unit")
+    # else:
+    #     print("no special notes for this unit")
 
     # Now I need to put in the Figures.. (5 plots if data is available for everything, or some might be missing)
     # figs already made in .svg format, they need to be imported
@@ -929,19 +929,19 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
 # for i in Unit_data["Unit"]:
 #     whonow = i
 #     # whonow = "Support and Infrastructure"
-#     current_year = 2021
+#     current_year = 2022
 #     test_unit = Unit_data[(Unit_data["Unit"] == whonow)]
 #     test_fund = Funding[(Funding["Unit"] == whonow)]
 #     unit_name = whonow
 #     generatePdf(unit_name, test_unit, test_fund, current_year)
 
 
-# What works will change every report.
-# Recommend running the above initially, checking the pdfs and then using below to tweak individual ones
+# # What works will change every report.
+# # Recommend running the above initially, checking the pdfs and then using below to tweak individual ones
 
 # Note: not setting the year universally, because it might be that you're reporting for the current year, or the one before
-whonow = "Swedish Metabolomics Centre"
-current_year = 2021
+whonow = "Autoimmunity and Serology Profiling"
+current_year = 2022
 test_facs = Unit_data[(Unit_data["Unit"] == whonow)]
 test_fund = Funding[(Funding["Unit"] == whonow)]
 Unit_name = whonow
