@@ -672,29 +672,29 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
         + int(Unit_data["UF_sect_health"])
         + int(Unit_data["UF_sect_othgov"])
     )
-    if total_percentage == 100:
-        Story.append(
-            Paragraph(
-                "<font color='#A7C947'><font name=Lato-B><b>User Fees by Sector {}</b></font></font>".format(
-                    current_year
-                ),
-                styles["onepager_inner_heading"],
-            )
+    #    if total_percentage == 100:
+    Story.append(
+        Paragraph(
+            "<font color='#A7C947'><font name=Lato-B><b>User Fees by Sector {}</b></font></font>".format(
+                current_year
+            ),
+            styles["onepager_inner_heading"],
         )
-    else:
-        print(
-            "WARNING: PERCENTAGE DOES NOT ADD UP TO 100 IN USER FEES FOR",
-            Unit_name,
-            total_percentage,
-        )
-        Story.append(
-            Paragraph(
-                "<font color='#FF0000'><font name=Lato-B><b>User Fees by Sector {}</b></font></font>".format(
-                    current_year
-                ),
-                styles["onepager_inner_heading"],
-            )
-        )
+    )
+    # else:
+    #     print(
+    #         "WARNING: PERCENTAGE DOES NOT ADD UP TO 100 IN USER FEES FOR",
+    #         Unit_name,
+    #         total_percentage,
+    #     )
+    #     Story.append(
+    #         Paragraph(
+    #             "<font color='#FF0000'><font name=Lato-B><b>User Fees by Sector {}</b></font></font>".format(
+    #                 current_year
+    #             ),
+    #             styles["onepager_inner_heading"],
+    #         )
+    #     )
     if int(Unit_data.UF_sect_nat) == 0:
         tmp_input = "-"
     else:
@@ -940,7 +940,7 @@ def generatePdf(Unit_name, Unit_data, Funding, current_year):
 # # Recommend running the above initially, checking the pdfs and then using below to tweak individual ones
 
 # Note: not setting the year universally, because it might be that you're reporting for the current year, or the one before
-whonow = "Autoimmunity and Serology Profiling"
+whonow = "Integrated Microscopy Technologies Umeå"
 current_year = 2022
 test_facs = Unit_data[(Unit_data["Unit"] == whonow)]
 test_fund = Funding[(Funding["Unit"] == whonow)]

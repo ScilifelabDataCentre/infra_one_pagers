@@ -303,7 +303,7 @@ def pub_cat_func(input):
         annotations=[
             dict(
                 showarrow=False,
-                text="Total Tech.<br>Dev. papers<br>(2020-2022): <b>{}</b>".format(
+                text="Total Tech.<br>Dev. papers<br>(2020-2022): {}".format(
                     sum(Tech_dev.Count)
                 ),
                 font=dict(size=25),
