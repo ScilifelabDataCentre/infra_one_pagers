@@ -48,6 +48,12 @@ NGI_tech_group_abbr = {
 
 abbreviated_tech_data = NGI_tech_group.replace(NGI_tech_group_abbr, regex=True)
 
+# Added to correct typos in datafile
+abbreviated_tech_data["PI_aff"] = abbreviated_tech_data["PI_aff"].replace(
+    "Industry\xa0",
+    "Industry",
+)
+
 
 def tech_pies_func(input):
     tech_data = input
@@ -111,28 +117,31 @@ def tech_pies_func(input):
 
 
 for i in abbreviated_tech_data["Technology"].unique():
+    # tech_pies_func(
+    #     abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Long read")]
+    # ),
+    # tech_pies_func(
+    #     abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Proteomics")]
+    # )
+    # tech_pies_func(
+    #     abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Short read")]
+    # )
+    # tech_pies_func(
+    #     abbreviated_tech_data[
+    #         (abbreviated_tech_data["Technology"] == "NGI Single cell")
+    #     ]
+    # )
+    # tech_pies_func(
+    #     abbreviated_tech_data[
+    #         (abbreviated_tech_data["Technology"] == "NGI SNP genotyping")
+    #     ]
+    # )
+    # tech_pies_func(
+    #     abbreviated_tech_data[
+    #         (abbreviated_tech_data["Technology"] == "NGI Spatial omics")
+    #     ]
+    # )
     tech_pies_func(
-        abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Long read")]
-    ),
-    tech_pies_func(
-        abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Proteomics")]
-    )
-    tech_pies_func(
-        abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Short read")]
-    )
-    tech_pies_func(
-        abbreviated_tech_data[
-            (abbreviated_tech_data["Technology"] == "NGI Single cell")
-        ]
-    )
-    tech_pies_func(
-        abbreviated_tech_data[
-            (abbreviated_tech_data["Technology"] == "NGI SNP genotyping")
-        ]
-    )
-    tech_pies_func(
-        abbreviated_tech_data[
-            (abbreviated_tech_data["Technology"] == "NGI Spatial omics")
-        ]
+        abbreviated_tech_data[(abbreviated_tech_data["Technology"] == "NGI Other")]
     )
     # Aff_pies_func(temp[(temp["Unit"] == z)])

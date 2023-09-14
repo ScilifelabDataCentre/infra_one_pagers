@@ -48,6 +48,15 @@ aff_2022_raw = pd.read_excel(
     engine="openpyxl",
     keep_default_na=False,
 )
+# For users 2021 & 2022, we need to combine 'Advanced Fish Technologies' and 'Spatial Proteomics'
+aff_2021_raw["Unit"] = aff_2021_raw["Unit"].replace(
+    "Advanced FISH Technologies",
+    "Spatial Proteomics",
+)
+aff_2022_raw["Unit"] = aff_2022_raw["Unit"].replace(
+    "Advanced FISH Technologies",
+    "Spatial Proteomics",
+)
 
 # Want to get counts of how many of each individual affiliation
 # for each unit
@@ -72,6 +81,7 @@ affiliates_data_2022.insert(loc=2, column="Year", value="2022")
 
 aff_comb = pd.concat([affiliates_data_2020, affiliates_data_2021, affiliates_data_2022])
 # print(aff_comb)
+# aff_comb.to_excel("test_affiliates_users_2022.xlsx")
 # Now need to replace all of the affiliation names with a shortened version
 
 aff_map_abbr = {
@@ -97,6 +107,7 @@ aff_map_abbr = {
 }
 
 affiliate_data = aff_comb.replace(aff_map_abbr, regex=True)
+# affiliate_data.to_excel("test_aff_user_data_20222.xlsx")
 # print(affiliate_data.PI_aff.unique())
 
 
@@ -173,6 +184,12 @@ instru_funding.rename(
     },
     inplace=True,
 )
+# This bit added, because some values in the instrument funding were blank
+instru_funding["Amount (kSEK)"] = instru_funding["Amount (kSEK)"].replace(
+    "", np.nan, regex=True
+)
+instru_funding = instru_funding.dropna()
+instru_funding["Amount (kSEK)"] = instru_funding["Amount (kSEK)"].astype(int)
 
 # need to drop 'platform no' column from other data before bringing these datasets together
 
