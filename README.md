@@ -1,2 +1,2 @@
-# infra_one_pagers
-Repository for one-pagers related to infrastructure units 
+# Infrastructure one-pagers
+Repository for one-pagers related to infrastructure units. Each folder contains the versions for individual years.
